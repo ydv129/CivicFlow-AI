@@ -1,0 +1,80 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+
+  html {
+    min-height: 100%;
+    overflow-y: auto;
+  }
+
+  /* Hide scrollbar tracks — scrolling remains fully functional */
+  * {
+    scrollbar-width: none;        /* Firefox */
+    -ms-overflow-style: none;     /* IE / Edge legacy */
+  }
+  *::-webkit-scrollbar {
+    display: none;                /* Chrome / Safari / Chromium */
+  }
+
+  /* Disable all animations on low-spec / motion-sensitive devices */
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+
+  :root {
+    /* Premium Light Mode - Minimal Clean Gray */
+    --background: 0 0% 98%;          /* #fafafa */
+    --surface: 0 0% 100%;             /* #ffffff */
+    --border: 240 5.9% 90%;           /* #e4e4e7 (Zinc-200) */
+
+    --text-primary: 240 10% 3.9%;     /* #09090b */
+    --text-muted: 240 3.8% 46.1%;     /* #71717a */
+
+    --primary: 221.2 83.2% 53.3%;     /* #2563eb (System Cobalt Blue) */
+    --primary-foreground: 210 40% 98%;/* #f8fafc */
+
+    --success: 142.1 76.2% 36.3%;     /* #16a34a (Forest Green) */
+    --success-foreground: 355.6 100% 97.3%;
+
+    --warning: 38 92% 50%;            /* #d97706 */
+    --radius: 0.375rem;               /* Smooth minimal rounded corners */
+  }
+
+  .dark {
+    /* Premium Dark Mode - Deep Industrial Ink Blue/Black */
+    --background: 240 10% 3.9%;       /* #09090b (Ink Black) */
+    --surface: 240 10% 5.9%;          /* #0f0f11 */
+    --border: 240 3.7% 15.9%;         /* #27272a (Zinc-800) */
+
+    --text-primary: 240 5% 96%;       /* #f4f4f5 */
+    --text-muted: 240 5% 64.9%;       /* #a1a1aa */
+
+    --primary: 217.2 91.2% 59.8%;     /* #3b82f6 */
+    --primary-foreground: 222.2 47.4% 11.2%;
+
+    --success: 142.1 70.6% 45.3%;     /* #10b981 */
+    --success-foreground: 144.4 61.9% 9.2%;
+
+    --warning: 48 96% 53%;            /* #fbbf24 */
+  }
+}
+
+@layer base {
+  body {
+    @apply bg-[color:hsl(var(--background))] text-[color:hsl(var(--text-primary))] antialiased;
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  }
+}

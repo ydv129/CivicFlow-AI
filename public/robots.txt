@@ -1,0 +1,10 @@
+User-agent: *
+Allow: /
+Allow: /dashboard
+
+# Block sign-in/sign-up pages from indexing
+Disallow: /sign-in
+Disallow: /sign-up
+Disallow: /api/
+
+Sitemap: https://civicflow-ai.vercel.app/sitemap.xml
