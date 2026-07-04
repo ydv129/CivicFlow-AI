@@ -24,9 +24,11 @@ export const viewport: Viewport = {
   ],
 };
 
+const appUrl = process.env.NEXT_PUBLIC_APP_URL || "http://localhost:3000";
+
 export const metadata: Metadata = {
   metadataBase: new URL(
-    process.env.NEXT_PUBLIC_APP_URL || "#"
+    appUrl.startsWith("http") ? appUrl : `https://${appUrl}`
   ),
   title: {
     default: "CivicFlow AI — Local Spreadsheet Analytics",
