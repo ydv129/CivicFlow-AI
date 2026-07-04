@@ -64,7 +64,7 @@ export function Dropzone({ onFileAccepted, isProcessing }: DropzoneProps) {
       onDragOver={handleDrag}
       onDragLeave={handleDrag}
       onDrop={handleDrop}
-      className={`relative w-full rounded-lg border border-dashed p-10 text-center transition-all duration-150 ${
+      className={`relative w-full rounded-lg border border-dashed p-6 sm:p-10 text-center transition-all duration-150 ${
         isDragActive
           ? "border-[color:hsl(var(--primary))] bg-[color:hsl(var(--primary))]/5"
           : "border-[color:hsl(var(--border))] bg-[color:hsl(var(--surface))]"

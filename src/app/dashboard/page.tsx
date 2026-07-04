@@ -318,7 +318,7 @@ Provide clear, structured, and direct analysis using the statistics and sample p
     <div className="min-h-screen flex flex-col bg-[color:hsl(var(--background))] font-sans selection:bg-[color:hsl(var(--primary))]/30">
 
       {/* Header */}
-      <header className="sticky top-0 z-10 border-b border-[color:hsl(var(--border))] bg-[color:hsl(var(--surface))] px-6 py-4">
+      <header className="sticky top-0 z-10 border-b border-[color:hsl(var(--border))] bg-[color:hsl(var(--surface))] px-4 sm:px-6 py-4">
         <div className="mx-auto flex max-w-7xl items-center justify-between">
           <div className="flex items-center space-x-3">
             <span className={`h-3 w-3 rounded-full flex-shrink-0 ${isEngineReady ? "bg-[color:hsl(var(--success))]" : "bg-amber-500 animate-pulse"}`} />
@@ -340,7 +340,7 @@ Provide clear, structured, and direct analysis using the statistics and sample p
 
       {/* Model Download Progress Banner */}
       {isEngineInitializing && initReport && (
-        <div className="bg-[color:hsl(var(--surface))] border-b border-[color:hsl(var(--border))] px-6 py-3">
+        <div className="bg-[color:hsl(var(--surface))] border-b border-[color:hsl(var(--border))] px-4 sm:px-6 py-3">
           <div className="max-w-7xl mx-auto flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
             <div className="flex items-center space-x-2 font-mono text-xs text-[color:hsl(var(--text-primary))]">
               <span className="animate-spin h-3.5 w-3.5 border-2 border-[color:hsl(var(--primary))] border-t-transparent rounded-full flex-shrink-0" />
@@ -361,7 +361,7 @@ Provide clear, structured, and direct analysis using the statistics and sample p
       )}
 
       {/* Main workspace — left column scrolls, right column sticks */}
-      <main className="flex-1 w-full max-w-7xl mx-auto px-6 py-8">
+      <main className="flex-1 w-full max-w-7xl mx-auto px-4 sm:px-6 py-6 sm:py-8">
         <div className="flex flex-col lg:flex-row gap-8 items-start">
 
           {/* Left Column — scrolls with page */}
@@ -375,7 +375,7 @@ Provide clear, structured, and direct analysis using the statistics and sample p
             )}
 
             {/* Ingestion Zone */}
-            <div className="rounded-lg border border-[color:hsl(var(--border))] bg-[color:hsl(var(--surface))] p-5 space-y-4">
+            <div className="rounded-lg border border-[color:hsl(var(--border))] bg-[color:hsl(var(--surface))] p-4 sm:p-5 space-y-4">
               <div className="flex items-center justify-between">
                 <h2 className="font-mono text-xs font-bold tracking-tight text-[color:hsl(var(--text-primary))] uppercase">
                   Spreadsheet Ingestion Zone
@@ -406,7 +406,7 @@ Provide clear, structured, and direct analysis using the statistics and sample p
 
             {/* Dataset Profile + Preview Panel — fixed height, internally scrollable */}
             {sheetData && (
-              <div className="rounded-lg border border-[color:hsl(var(--border))] bg-[color:hsl(var(--surface))] p-5 flex flex-col" style={{ height: "380px" }}>
+              <div className="rounded-lg border border-[color:hsl(var(--border))] bg-[color:hsl(var(--surface))] p-4 sm:p-5 flex flex-col h-[350px] sm:h-[380px]">
 
                 {/* Tab Header */}
                 <div className="flex justify-between items-center border-b border-[color:hsl(var(--border))]/60 pb-3 mb-3 flex-shrink-0">
@@ -492,7 +492,7 @@ Provide clear, structured, and direct analysis using the statistics and sample p
           </div>
 
           {/* Right Column — sticky chat pane, does not affect page scroll height */}
-          <div className="w-full lg:w-5/12 lg:sticky lg:top-[73px]" style={{ height: "calc(100vh - 90px)" }}>
+          <div className="w-full lg:w-5/12 lg:sticky lg:top-24 h-[600px] sm:h-[calc(100vh-140px)] min-h-[500px]">
             <ChatPane
               messages={messages}
               onSendMessage={handleSendMessage}

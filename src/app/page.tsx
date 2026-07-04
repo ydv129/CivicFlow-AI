@@ -104,7 +104,7 @@ export default function LandingPage() {
 
       {/* ── Sticky Navigation ─────────────────────────────────── */}
       <header className="sticky top-0 z-20 border-b border-[color:hsl(var(--border))]/50 bg-[color:hsl(var(--background))]/80" style={{ backdropFilter: "blur(12px)" }}>
-        <div className="mx-auto max-w-7xl w-full px-6 py-4 flex items-center justify-between">
+        <div className="mx-auto max-w-7xl w-full px-4 sm:px-6 py-4 flex items-center justify-between">
           <div className="flex items-center space-x-2.5 font-mono text-sm tracking-widest font-extrabold uppercase">
             <div className="flex h-6 w-6 items-center justify-center rounded bg-[color:hsl(var(--primary))] text-[color:hsl(var(--primary-foreground))] text-[9px] font-bold flex-shrink-0">
               CF
@@ -145,7 +145,7 @@ export default function LandingPage() {
       </header>
 
       {/* ── Hero ──────────────────────────────────────────────── */}
-      <section className="flex flex-col items-center justify-center text-center px-6 pt-24 pb-20 max-w-4xl mx-auto w-full">
+      <section className="flex flex-col items-center justify-center text-center px-4 sm:px-6 pt-24 pb-20 max-w-4xl mx-auto w-full">
         <div className="inline-flex items-center gap-2 rounded-full border border-[color:hsl(var(--primary))]/25 bg-[color:hsl(var(--primary))]/6 px-3.5 py-1 text-[10px] font-mono tracking-wider text-[color:hsl(var(--primary))] uppercase mb-8">
           <span className="h-1.5 w-1.5 rounded-full bg-[color:hsl(var(--success))]" />
           v1.0.0 Stable · 100% Client-Side Sandbox
@@ -196,9 +196,9 @@ export default function LandingPage() {
             <span className="h-2.5 w-2.5 rounded-full bg-[color:hsl(var(--success))]/60" />
             <span className="ml-3 font-mono text-[9px] text-[color:hsl(var(--text-muted))] tracking-wider uppercase">CivicFlow AI // Analytics Dashboard</span>
           </div>
-          <div className="grid grid-cols-12 gap-3 h-44">
+          <div className="grid grid-cols-1 sm:grid-cols-12 gap-3 sm:h-44">
             {/* Left pane */}
-            <div className="col-span-7 rounded-lg border border-[color:hsl(var(--border))]/50 bg-[color:hsl(var(--background))] p-3 space-y-2.5 flex flex-col">
+            <div className="col-span-1 sm:col-span-7 rounded-lg border border-[color:hsl(var(--border))]/50 bg-[color:hsl(var(--background))] p-3 space-y-2.5 flex flex-col h-32 sm:h-auto">
               <div className="h-1.5 w-20 rounded-full bg-[color:hsl(var(--border))]" />
               <div className="flex-1 rounded border border-dashed border-[color:hsl(var(--border))] bg-[color:hsl(var(--surface))]/40 flex items-center justify-center">
                 <span className="font-mono text-[8px] text-[color:hsl(var(--text-muted))] tracking-wider">DROP SPREADSHEET HERE</span>
@@ -210,7 +210,7 @@ export default function LandingPage() {
               </div>
             </div>
             {/* Right pane — chat */}
-            <div className="col-span-5 rounded-lg border border-[color:hsl(var(--border))]/50 bg-[color:hsl(var(--background))] p-3 space-y-2 flex flex-col">
+            <div className="col-span-1 sm:col-span-5 rounded-lg border border-[color:hsl(var(--border))]/50 bg-[color:hsl(var(--background))] p-3 space-y-2 flex flex-col h-40 sm:h-auto">
               <div className="flex items-center gap-1.5">
                 <span className="h-1.5 w-1.5 rounded-full bg-[color:hsl(var(--success))]" />
                 <div className="h-1.5 w-16 rounded-full bg-[color:hsl(var(--border))]" />
@@ -230,7 +230,7 @@ export default function LandingPage() {
       <div className="w-full border-t border-[color:hsl(var(--border))]/40" />
 
       {/* ── Features Grid ─────────────────────────────────────── */}
-      <section id="features" className="w-full max-w-7xl mx-auto px-6 py-20">
+      <section id="features" className="w-full max-w-7xl mx-auto px-4 sm:px-6 py-20">
         <div className="text-center mb-12">
           <div className="inline-block font-mono text-[10px] text-[color:hsl(var(--primary))] tracking-widest uppercase mb-3">System Architecture</div>
           <h2 className="text-2xl sm:text-3xl font-extrabold tracking-tight">Built for Privacy. Built for Performance.</h2>
@@ -259,7 +259,7 @@ export default function LandingPage() {
       <div className="w-full border-t border-[color:hsl(var(--border))]/40" />
 
       {/* ── Tech Specs Strip ──────────────────────────────────── */}
-      <section id="specs" className="w-full max-w-7xl mx-auto px-6 py-16">
+      <section id="specs" className="w-full max-w-7xl mx-auto px-4 sm:px-6 py-16">
         <div className="text-center mb-10">
           <div className="inline-block font-mono text-[10px] text-[color:hsl(var(--primary))] tracking-widest uppercase mb-3">Technical Specs</div>
           <h2 className="text-2xl font-extrabold tracking-tight">System Parameters</h2>
@@ -276,8 +276,8 @@ export default function LandingPage() {
       </section>
 
       {/* ── CTA Banner ────────────────────────────────────────── */}
-      <section className="w-full max-w-7xl mx-auto px-6 pb-20">
-        <div className="rounded-2xl border border-[color:hsl(var(--primary))]/20 bg-[color:hsl(var(--primary))]/5 px-8 py-12 text-center space-y-5">
+      <section className="w-full max-w-7xl mx-auto px-4 sm:px-6 pb-20">
+        <div className="rounded-2xl border border-[color:hsl(var(--primary))]/20 bg-[color:hsl(var(--primary))]/5 px-4 sm:px-8 py-12 text-center space-y-5">
           <h2 className="text-2xl sm:text-3xl font-extrabold tracking-tight">Ready to analyze your data locally?</h2>
           <p className="text-sm text-[color:hsl(var(--text-muted))] max-w-md mx-auto leading-relaxed">
             Sign in to access the secure workspace. Your data never leaves your browser.
@@ -302,7 +302,7 @@ export default function LandingPage() {
       </section>
 
       {/* ── Footer ────────────────────────────────────────────── */}
-      <footer className="border-t border-[color:hsl(var(--border))]/40 px-6 py-6">
+      <footer className="border-t border-[color:hsl(var(--border))]/40 px-4 sm:px-6 py-6">
         <div className="mx-auto max-w-7xl flex flex-col sm:flex-row justify-between items-center gap-3 font-mono text-[10px] text-[color:hsl(var(--text-muted))]">
           <span>© {new Date().getFullYear()} CivicFlow AI · All data processed locally</span>
           <div className="flex items-center gap-4">
