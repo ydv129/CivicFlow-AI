@@ -322,8 +322,8 @@ Provide clear, structured, and direct analysis using the statistics and sample p
         <div className="mx-auto flex max-w-7xl items-center justify-between">
           <div className="flex items-center space-x-3">
             <span className={`h-3 w-3 rounded-full flex-shrink-0 ${isEngineReady ? "bg-[color:hsl(var(--success))]" : "bg-amber-500 animate-pulse"}`} />
-            <h1 className="font-mono text-sm tracking-wider font-extrabold uppercase text-[color:hsl(var(--text-primary))]">
-              CivicFlow AI // Analytics Dashboard
+            <h1 className="font-mono text-[10px] sm:text-sm tracking-wider font-extrabold uppercase text-[color:hsl(var(--text-primary))] truncate max-w-[150px] sm:max-w-none">
+              CivicFlow AI <span className="hidden sm:inline">// Analytics Dashboard</span>
             </h1>
           </div>
           <div className="flex items-center space-x-4">
@@ -331,7 +331,8 @@ Provide clear, structured, and direct analysis using the statistics and sample p
               onClick={handlePurgeSession}
               className="inline-flex h-8 items-center justify-center rounded border border-[color:hsl(var(--border))] bg-[color:hsl(var(--background))] px-3 font-mono text-[10px] font-semibold text-[color:hsl(var(--text-muted))] hover:text-[color:hsl(var(--text-primary))] hover:border-[color:hsl(var(--text-muted))] active:scale-[0.98] transition-colors"
             >
-              Purge Session
+              <span className="hidden sm:inline">Purge Session</span>
+              <span className="sm:hidden">Purge</span>
             </button>
             <UserButton />
           </div>
@@ -342,9 +343,10 @@ Provide clear, structured, and direct analysis using the statistics and sample p
       {isEngineInitializing && initReport && (
         <div className="bg-[color:hsl(var(--surface))] border-b border-[color:hsl(var(--border))] px-4 sm:px-6 py-3">
           <div className="max-w-7xl mx-auto flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
-            <div className="flex items-center space-x-2 font-mono text-xs text-[color:hsl(var(--text-primary))]">
+            <div className="flex items-center space-x-2 font-mono text-[10px] sm:text-xs text-[color:hsl(var(--text-primary))]">
               <span className="animate-spin h-3.5 w-3.5 border-2 border-[color:hsl(var(--primary))] border-t-transparent rounded-full flex-shrink-0" />
-              <span>Downloading Gemma-2B weights:</span>
+              <span className="hidden sm:inline">Downloading Gemma-2B weights:</span>
+              <span className="sm:hidden">Downloading weights:</span>
               <span className="font-bold text-[color:hsl(var(--primary))]">{(initReport.progress * 100).toFixed(0)}%</span>
             </div>
             <div className="flex-1 max-w-xs bg-[color:hsl(var(--border))] h-1.5 rounded-full overflow-hidden">
@@ -377,8 +379,8 @@ Provide clear, structured, and direct analysis using the statistics and sample p
             {/* Ingestion Zone */}
             <div className="rounded-lg border border-[color:hsl(var(--border))] bg-[color:hsl(var(--surface))] p-4 sm:p-5 space-y-4">
               <div className="flex items-center justify-between">
-                <h2 className="font-mono text-xs font-bold tracking-tight text-[color:hsl(var(--text-primary))] uppercase">
-                  Spreadsheet Ingestion Zone
+                <h2 className="font-mono text-[10px] sm:text-xs font-bold tracking-tight text-[color:hsl(var(--text-primary))] uppercase truncate max-w-[140px] sm:max-w-none">
+                  Spreadsheet Ingestion
                 </h2>
                 {/* File detach button — only visible when a file is loaded */}
                 {sheetData && activeFileName && (
@@ -409,8 +411,8 @@ Provide clear, structured, and direct analysis using the statistics and sample p
               <div className="rounded-lg border border-[color:hsl(var(--border))] bg-[color:hsl(var(--surface))] p-4 sm:p-5 flex flex-col h-[350px] sm:h-[380px]">
 
                 {/* Tab Header */}
-                <div className="flex justify-between items-center border-b border-[color:hsl(var(--border))]/60 pb-3 mb-3 flex-shrink-0">
-                  <div className="flex space-x-4 font-mono text-xs">
+                <div className="flex flex-col sm:flex-row sm:justify-between items-start sm:items-center border-b border-[color:hsl(var(--border))]/60 pb-3 mb-3 flex-shrink-0 gap-2 sm:gap-0">
+                  <div className="flex space-x-4 font-mono text-[10px] sm:text-xs">
                     <button
                       onClick={() => setActiveTab("summary")}
                       className={`font-bold tracking-tight uppercase transition-colors pb-1 border-b-2 ${
@@ -419,7 +421,7 @@ Provide clear, structured, and direct analysis using the statistics and sample p
                           : "border-transparent text-[color:hsl(var(--text-muted))] hover:text-[color:hsl(var(--text-primary))]"
                       }`}
                     >
-                      Summary Profiler
+                      Summary <span className="hidden sm:inline">Profiler</span>
                     </button>
                     <button
                       onClick={() => setActiveTab("preview")}
@@ -429,10 +431,10 @@ Provide clear, structured, and direct analysis using the statistics and sample p
                           : "border-transparent text-[color:hsl(var(--text-muted))] hover:text-[color:hsl(var(--text-primary))]"
                       }`}
                     >
-                      Preview Grid
+                      Preview <span className="hidden sm:inline">Grid</span>
                     </button>
                   </div>
-                  <div className="font-mono text-[10px] text-[color:hsl(var(--text-muted))] space-x-3">
+                  <div className="font-mono text-[10px] text-[color:hsl(var(--text-muted))] space-x-3 self-end sm:self-auto">
                     <span>Cols: <strong className="text-[color:hsl(var(--text-primary))]">{sheetData.headers.length}</strong></span>
                     <span>Rows: <strong className="text-[color:hsl(var(--text-primary))]">{sheetData.rows.length}</strong></span>
                   </div>
