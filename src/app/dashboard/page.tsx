@@ -324,7 +324,7 @@ Provide clear, structured, and direct analysis using the statistics and sample p
           <div className="flex items-center space-x-3">
             <span className={`h-3 w-3 rounded-full flex-shrink-0 ${isEngineReady ? "bg-[color:hsl(var(--success))]" : "bg-amber-500 animate-pulse"}`} />
             <h1 className="font-mono text-[10px] sm:text-sm tracking-wider font-extrabold uppercase text-[color:hsl(var(--text-primary))] truncate max-w-[150px] sm:max-w-none">
-              CivicFlow AI <span className="hidden sm:inline">// Analytics Dashboard</span>
+              CivicFlow AI <span className="hidden sm:inline">{"// Analytics Dashboard"}</span>
             </h1>
           </div>
           <div className="flex items-center space-x-4">
