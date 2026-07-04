@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import React from "react";
-import { Show, SignInButton } from "@clerk/react";
+import { SignInButton, useAuth } from "@clerk/react";
 
 const features = [
   {
@@ -84,8 +84,9 @@ const specs = [
   { label: "Tracking", value: "Zero" },
   { label: "Server Uploads", value: "None" },
 ];
-
 export default function LandingPage() {
+  const { isLoaded, isSignedIn } = useAuth();
+
   return (
     <div className="min-h-screen flex flex-col bg-[color:hsl(var(--background))] text-[color:hsl(var(--text-primary))] selection:bg-[color:hsl(var(--primary))]/30">
 
@@ -123,21 +124,22 @@ export default function LandingPage() {
             >
               Specs
             </a>
-            <Show when="signed-in">
+            {!isLoaded ? (
+              <div className="h-8 w-24 bg-[color:hsl(var(--surface))] rounded animate-pulse" />
+            ) : isSignedIn ? (
               <Link
                 href="/dashboard"
                 className="inline-flex h-8 items-center justify-center rounded-md border border-[color:hsl(var(--border))] bg-[color:hsl(var(--surface))] px-4 text-[11px] font-mono font-semibold tracking-tight hover:border-[color:hsl(var(--text-muted))] hover:bg-[color:hsl(var(--background))] active:scale-[0.98] transition-colors"
               >
                 Enter Console →
               </Link>
-            </Show>
-            <Show when="signed-out">
+            ) : (
               <SignInButton mode="modal" forceRedirectUrl="/dashboard">
                 <button className="inline-flex h-8 items-center justify-center rounded-md border border-[color:hsl(var(--border))] bg-[color:hsl(var(--surface))] px-4 text-[11px] font-mono font-semibold tracking-tight hover:border-[color:hsl(var(--text-muted))] hover:bg-[color:hsl(var(--background))] active:scale-[0.98] transition-colors">
                   Sign In →
                 </button>
               </SignInButton>
-            </Show>
+            )}
           </nav>
         </div>
       </header>
@@ -161,21 +163,22 @@ export default function LandingPage() {
         </p>
 
         <div className="flex flex-col sm:flex-row items-center justify-center gap-3 mb-16">
-          <Show when="signed-in">
+          {!isLoaded ? (
+            <div className="h-11 w-48 bg-[color:hsl(var(--primary))]/50 rounded animate-pulse w-full sm:w-auto" />
+          ) : isSignedIn ? (
             <Link
               href="/dashboard"
               className="inline-flex h-11 items-center justify-center rounded-md bg-[color:hsl(var(--primary))] px-7 text-[11px] font-mono font-semibold text-[color:hsl(var(--primary-foreground))] shadow-lg hover:opacity-90 active:scale-[0.97] transition-all w-full sm:w-auto"
             >
               Launch Active Workspace →
             </Link>
-          </Show>
-          <Show when="signed-out">
+          ) : (
             <SignInButton mode="modal" forceRedirectUrl="/dashboard">
               <button className="inline-flex h-11 items-center justify-center rounded-md bg-[color:hsl(var(--primary))] px-7 text-[11px] font-mono font-semibold text-[color:hsl(var(--primary-foreground))] shadow-lg hover:opacity-90 active:scale-[0.97] transition-all w-full sm:w-auto">
                 Sign In to Workspace →
               </button>
             </SignInButton>
-          </Show>
+          )}
           <a
             href="#features"
             className="inline-flex h-11 items-center justify-center rounded-md border border-[color:hsl(var(--border))] bg-[color:hsl(var(--surface))] px-7 text-[11px] font-mono font-semibold tracking-tight hover:border-[color:hsl(var(--text-muted))] hover:bg-[color:hsl(var(--background))] active:scale-[0.97] transition-all w-full sm:w-auto"
@@ -279,21 +282,22 @@ export default function LandingPage() {
           <p className="text-sm text-[color:hsl(var(--text-muted))] max-w-md mx-auto leading-relaxed">
             Sign in to access the secure workspace. Your data never leaves your browser.
           </p>
-          <Show when="signed-in">
+          {!isLoaded ? (
+            <div className="h-11 w-48 mx-auto bg-[color:hsl(var(--primary))]/50 rounded animate-pulse" />
+          ) : isSignedIn ? (
             <Link
               href="/dashboard"
               className="inline-flex h-11 items-center justify-center rounded-md bg-[color:hsl(var(--primary))] px-8 text-[11px] font-mono font-semibold text-[color:hsl(var(--primary-foreground))] shadow-lg hover:opacity-90 active:scale-[0.97] transition-all"
             >
               Launch Active Workspace →
             </Link>
-          </Show>
-          <Show when="signed-out">
+          ) : (
             <SignInButton mode="modal" forceRedirectUrl="/dashboard">
               <button className="inline-flex h-11 items-center justify-center rounded-md bg-[color:hsl(var(--primary))] px-8 text-[11px] font-mono font-semibold text-[color:hsl(var(--primary-foreground))] shadow-lg hover:opacity-90 active:scale-[0.97] transition-all">
                 Sign In to Workspace →
               </button>
             </SignInButton>
-          </Show>
+          )}
         </div>
       </section>
 
