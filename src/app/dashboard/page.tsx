@@ -103,6 +103,7 @@ function DashboardContent() {
   const [initReport, setInitReport] = useState<InitProgressReport | null>(null);
   const [isWebGpuSupported, setIsWebGpuSupported] = useState<boolean | null>(null);
   const [errorMsg, setErrorMsg] = useState<string | null>(null);
+  const [warningMsg, setWarningMsg] = useState<string | null>(null);
   const [columnProfiles, setColumnProfiles] = useState<ColumnProfile[]>([]);
   const [activeTab, setActiveTab] = useState<"summary" | "preview">("summary");
 
@@ -118,7 +119,7 @@ function DashboardContent() {
     const checkQuota = async () => {
       const status = await verifyLocalStorageQuota();
       if (status && !status.isSufficient) {
-        setErrorMsg("Warning: Local browser storage is low. Gemma-2B download requires at least 2.5 GB of free space.");
+        setWarningMsg("Warning: Local browser storage is low. Gemma-2B download requires at least 2.5 GB of free space.");
       }
     };
     checkQuota();
@@ -369,10 +370,17 @@ Provide clear, structured, and direct analysis using the statistics and sample p
           {/* Left Column — scrolls with page */}
           <div className="w-full lg:w-7/12 space-y-5">
 
+            {/* Warning Banner */}
+            {warningMsg && (
+              <div className="rounded border border-amber-500/30 bg-amber-500/10 p-3 text-xs font-mono text-amber-500">
+                [SYSTEM WARNING]: {warningMsg}
+              </div>
+            )}
+
             {/* Error Banner */}
             {errorMsg && (
-              <div className="rounded border border-red-500/20 bg-red-500/5 p-3 text-xs font-mono text-red-400">
-                [SYSTEM WARNING]: {errorMsg}
+              <div className="rounded border border-red-500/30 bg-red-500/10 p-3 text-xs font-mono text-red-500">
+                [SYSTEM ERROR]: {errorMsg}
               </div>
             )}
 
