@@ -17,6 +17,8 @@ export function Dropzone({ onFileAccepted, isProcessing }: DropzoneProps) {
     if (e.type === "dragenter" || e.type === "dragover") {
       setIsDragActive(true);
     } else if (e.type === "dragleave") {
+      // Prevent flickering when dragging over child elements
+      if (e.currentTarget.contains(e.relatedTarget as Node)) return;
       setIsDragActive(false);
     }
   };
