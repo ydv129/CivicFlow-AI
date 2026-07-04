@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import React from "react";
+import { SignedIn, SignedOut, SignInButton } from "@clerk/nextjs";
 
 const features = [
   {
@@ -122,12 +123,21 @@ export default function LandingPage() {
             >
               Specs
             </a>
-            <Link
-              href="/dashboard"
-              className="inline-flex h-8 items-center justify-center rounded-md border border-[color:hsl(var(--border))] bg-[color:hsl(var(--surface))] px-4 text-[11px] font-mono font-semibold tracking-tight hover:border-[color:hsl(var(--text-muted))] hover:bg-[color:hsl(var(--background))] active:scale-[0.98] transition-colors"
-            >
-              Enter Console →
-            </Link>
+            <SignedIn>
+              <Link
+                href="/dashboard"
+                className="inline-flex h-8 items-center justify-center rounded-md border border-[color:hsl(var(--border))] bg-[color:hsl(var(--surface))] px-4 text-[11px] font-mono font-semibold tracking-tight hover:border-[color:hsl(var(--text-muted))] hover:bg-[color:hsl(var(--background))] active:scale-[0.98] transition-colors"
+              >
+                Enter Console →
+              </Link>
+            </SignedIn>
+            <SignedOut>
+              <SignInButton mode="modal" forceRedirectUrl="/dashboard">
+                <button className="inline-flex h-8 items-center justify-center rounded-md border border-[color:hsl(var(--border))] bg-[color:hsl(var(--surface))] px-4 text-[11px] font-mono font-semibold tracking-tight hover:border-[color:hsl(var(--text-muted))] hover:bg-[color:hsl(var(--background))] active:scale-[0.98] transition-colors">
+                  Sign In →
+                </button>
+              </SignInButton>
+            </SignedOut>
           </nav>
         </div>
       </header>
@@ -151,12 +161,21 @@ export default function LandingPage() {
         </p>
 
         <div className="flex flex-col sm:flex-row items-center justify-center gap-3 mb-16">
-          <Link
-            href="/dashboard"
-            className="inline-flex h-11 items-center justify-center rounded-md bg-[color:hsl(var(--primary))] px-7 text-[11px] font-mono font-semibold text-[color:hsl(var(--primary-foreground))] shadow-lg hover:opacity-90 active:scale-[0.97] transition-all w-full sm:w-auto"
-          >
-            Launch Active Workspace →
-          </Link>
+          <SignedIn>
+            <Link
+              href="/dashboard"
+              className="inline-flex h-11 items-center justify-center rounded-md bg-[color:hsl(var(--primary))] px-7 text-[11px] font-mono font-semibold text-[color:hsl(var(--primary-foreground))] shadow-lg hover:opacity-90 active:scale-[0.97] transition-all w-full sm:w-auto"
+            >
+              Launch Active Workspace →
+            </Link>
+          </SignedIn>
+          <SignedOut>
+            <SignInButton mode="modal" forceRedirectUrl="/dashboard">
+              <button className="inline-flex h-11 items-center justify-center rounded-md bg-[color:hsl(var(--primary))] px-7 text-[11px] font-mono font-semibold text-[color:hsl(var(--primary-foreground))] shadow-lg hover:opacity-90 active:scale-[0.97] transition-all w-full sm:w-auto">
+                Sign In to Workspace →
+              </button>
+            </SignInButton>
+          </SignedOut>
           <a
             href="#features"
             className="inline-flex h-11 items-center justify-center rounded-md border border-[color:hsl(var(--border))] bg-[color:hsl(var(--surface))] px-7 text-[11px] font-mono font-semibold tracking-tight hover:border-[color:hsl(var(--text-muted))] hover:bg-[color:hsl(var(--background))] active:scale-[0.97] transition-all w-full sm:w-auto"
@@ -260,12 +279,21 @@ export default function LandingPage() {
           <p className="text-sm text-[color:hsl(var(--text-muted))] max-w-md mx-auto leading-relaxed">
             Sign in to access the secure workspace. Your data never leaves your browser.
           </p>
-          <Link
-            href="/dashboard"
-            className="inline-flex h-11 items-center justify-center rounded-md bg-[color:hsl(var(--primary))] px-8 text-[11px] font-mono font-semibold text-[color:hsl(var(--primary-foreground))] shadow-lg hover:opacity-90 active:scale-[0.97] transition-all"
-          >
-            Launch Active Workspace →
-          </Link>
+          <SignedIn>
+            <Link
+              href="/dashboard"
+              className="inline-flex h-11 items-center justify-center rounded-md bg-[color:hsl(var(--primary))] px-8 text-[11px] font-mono font-semibold text-[color:hsl(var(--primary-foreground))] shadow-lg hover:opacity-90 active:scale-[0.97] transition-all"
+            >
+              Launch Active Workspace →
+            </Link>
+          </SignedIn>
+          <SignedOut>
+            <SignInButton mode="modal" forceRedirectUrl="/dashboard">
+              <button className="inline-flex h-11 items-center justify-center rounded-md bg-[color:hsl(var(--primary))] px-8 text-[11px] font-mono font-semibold text-[color:hsl(var(--primary-foreground))] shadow-lg hover:opacity-90 active:scale-[0.97] transition-all">
+                Sign In to Workspace →
+              </button>
+            </SignInButton>
+          </SignedOut>
         </div>
       </section>
 
