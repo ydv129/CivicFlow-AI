@@ -157,7 +157,7 @@ function DashboardContent() {
           ]);
         } catch (err) {
           setErrorMsg(`Model download/compile failed: ${(err as Error).message}`);
-          hasInitStartedRef.current = false;
+          // Do not reset hasInitStartedRef to prevent infinite retry loop flickering
         } finally {
           setIsEngineInitializing(false);
         }

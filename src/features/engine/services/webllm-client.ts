@@ -5,7 +5,8 @@ export type EngineStatusCallback = (report: InitProgressReport) => void;
 export class WebLlmClientManager {
   private engine: MLCEngine | null = null;
   private initPromise: Promise<MLCEngine> | null = null;
-  private readonly modelId: string = "gemma-2b-it-q4f16_1-MLC";
+  private modelId: string = "gemma-2b-it-q4f16_1-MLC";
+  private isFallback: boolean = false;
   private abortRequested: boolean = false;
 
   /**
@@ -37,6 +38,26 @@ export class WebLlmClientManager {
         this.engine = engine;
         return engine;
       } catch (error) {
+        if (!this.isFallback) {
+          try {
+            this.isFallback = true;
+            // Fallback to smaller SmolLM model silently
+            this.modelId = "SmolLM2-360M-Instruct-q4f16_1-MLC";
+            const fallbackEngine = await CreateMLCEngine(this.modelId, {
+              initProgressCallback: (report) => {
+                onProgress(report);
+              },
+              logLevel: "WARN",
+            });
+            this.engine = fallbackEngine;
+            return fallbackEngine;
+          } catch (fallbackError) {
+            this.engine = null;
+            this.initPromise = null;
+            throw new Error(`WebGPU Engine initialization failed: ${(fallbackError as Error).message}`);
+          }
+        }
+        
         this.engine = null;
         this.initPromise = null;
         throw new Error(`WebGPU Engine initialization failed: ${(error as Error).message}`);
