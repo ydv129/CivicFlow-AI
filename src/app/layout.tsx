@@ -1,6 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { Inter, JetBrains_Mono } from "next/font/google";
-import { ClerkProviderWrapper } from "@/components/clerk-provider-wrapper";
+import { ClerkProvider } from "@clerk/nextjs";
 import "./globals.css";
 
 const inter = Inter({
@@ -81,7 +81,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <ClerkProviderWrapper>
+    <ClerkProvider>
       <html lang="en" className="dark" suppressHydrationWarning>
         <body
           className={`${inter.variable} ${jetbrainsMono.variable} antialiased bg-[color:hsl(var(--background))] text-[color:hsl(var(--text-primary))]`}
@@ -89,6 +89,6 @@ export default function RootLayout({
           {children}
         </body>
       </html>
-    </ClerkProviderWrapper>
+    </ClerkProvider>
   );
 }
