@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import React from "react";
-import { SignInButton, useAuth } from "@clerk/react";
+import { SignInButton, useAuth } from "@clerk/nextjs";
 
 const features = [
   {
