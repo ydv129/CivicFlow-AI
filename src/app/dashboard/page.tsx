@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useEffect, useRef, useCallback } from "react";
-import { Show, RedirectToSignIn, UserButton, useAuth } from "@clerk/react";
+import { RedirectToSignIn, UserButton, useAuth } from "@clerk/nextjs";
 import { useParser } from "@/features/parser/hooks/use-parser";
 import { Dropzone } from "@/features/parser/components/dropzone";
 import { ChatPane, ChatMessage } from "@/features/chat/components/chat-pane";
@@ -29,12 +29,13 @@ function SessionTeardownWatcher() {
 
 export default function Dashboard() {
   const [mounted, setMounted] = useState(false);
+  const { isLoaded, isSignedIn } = useAuth();
 
   useEffect(() => {
     setMounted(true);
   }, []);
 
-  if (!mounted) {
+  if (!mounted || !isLoaded) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-[color:hsl(var(--background))] font-mono text-xs text-[color:hsl(var(--text-muted))]">
         <div className="flex items-center space-x-2">
@@ -45,15 +46,14 @@ export default function Dashboard() {
     );
   }
 
+  if (!isSignedIn) {
+    return <RedirectToSignIn signInForceRedirectUrl="/dashboard" />;
+  }
+
   return (
     <>
       <SessionTeardownWatcher />
-      <Show when="signed-in">
-        <DashboardContent />
-      </Show>
-      <Show when="signed-out">
-        <RedirectToSignIn signInForceRedirectUrl="/dashboard" />
-      </Show>
+      <DashboardContent />
     </>
   );
 }
