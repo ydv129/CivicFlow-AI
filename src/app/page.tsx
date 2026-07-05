@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import React from "react";
-import { SignInButton, useAuth } from "@clerk/nextjs";
+import { useAuth } from "@/contexts/auth-context";
 
 const features = [
   {
@@ -32,7 +32,7 @@ const features = [
     index: "03",
     label: "Secure Airgap",
     title: "Zero Data Leakage",
-    desc: "Enforces strict Auth-Privacy Separation (APSP). Clerk handles identity — your spreadsheet data never leaves the browser sandbox. CSP headers lock all outbound vectors.",
+    desc: "Enforces strict Auth-Privacy Separation (APSP). Firebase handles identity — your spreadsheet data never leaves the browser sandbox. CSP headers lock all outbound vectors.",
     icon: (
       <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
         <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
@@ -80,7 +80,7 @@ const specs = [
   { label: "Model", value: "Gemma-2B q4f16" },
   { label: "Inference", value: "WebGPU / WASM" },
   { label: "Storage", value: "IndexedDB" },
-  { label: "Auth", value: "Clerk (APSP)" },
+  { label: "Auth", value: "Firebase" },
   { label: "Tracking", value: "Zero" },
   { label: "Server Uploads", value: "None" },
 ];
@@ -134,11 +134,11 @@ export default function LandingPage() {
                 Enter Console →
               </Link>
             ) : (
-              <SignInButton mode="modal" forceRedirectUrl="/dashboard">
+              <Link href="/sign-in">
                 <button className="inline-flex h-8 items-center justify-center rounded-md border border-[color:hsl(var(--border))] bg-[color:hsl(var(--surface))] px-4 text-[11px] font-mono font-semibold tracking-tight hover:border-[color:hsl(var(--text-muted))] hover:bg-[color:hsl(var(--background))] active:scale-[0.98] transition-colors">
                   Sign In →
                 </button>
-              </SignInButton>
+              </Link>
             )}
           </nav>
         </div>
@@ -173,11 +173,11 @@ export default function LandingPage() {
               Launch Active Workspace →
             </Link>
           ) : (
-            <SignInButton mode="modal" forceRedirectUrl="/dashboard">
-              <button className="inline-flex h-11 items-center justify-center rounded-md bg-[color:hsl(var(--primary))] px-7 text-[11px] font-mono font-semibold text-[color:hsl(var(--primary-foreground))] shadow-lg hover:opacity-90 active:scale-[0.97] transition-all w-full sm:w-auto">
+            <Link href="/sign-in" className="w-full sm:w-auto">
+              <button className="inline-flex h-11 items-center justify-center rounded-md bg-[color:hsl(var(--primary))] px-7 text-[11px] font-mono font-semibold text-[color:hsl(var(--primary-foreground))] shadow-lg hover:opacity-90 active:scale-[0.97] transition-all w-full">
                 Sign In to Workspace →
               </button>
-            </SignInButton>
+            </Link>
           )}
           <a
             href="#features"
@@ -292,11 +292,11 @@ export default function LandingPage() {
               Launch Active Workspace →
             </Link>
           ) : (
-            <SignInButton mode="modal" forceRedirectUrl="/dashboard">
+            <Link href="/sign-in">
               <button className="inline-flex h-11 items-center justify-center rounded-md bg-[color:hsl(var(--primary))] px-8 text-[11px] font-mono font-semibold text-[color:hsl(var(--primary-foreground))] shadow-lg hover:opacity-90 active:scale-[0.97] transition-all">
                 Sign In to Workspace →
               </button>
-            </SignInButton>
+            </Link>
           )}
         </div>
       </section>

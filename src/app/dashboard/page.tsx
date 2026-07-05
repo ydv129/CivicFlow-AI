@@ -1,7 +1,9 @@
 "use client";
 
 import React, { useState, useEffect, useRef, useCallback } from "react";
-import { RedirectToSignIn, UserButton, useAuth } from "@clerk/nextjs";
+import { useRouter } from "next/navigation";
+import { useAuth } from "@/contexts/auth-context";
+import { auth } from "@/lib/firebase/config";
 import { useParser } from "@/features/parser/hooks/use-parser";
 import { Dropzone } from "@/features/parser/components/dropzone";
 import { ChatPane, ChatMessage } from "@/features/chat/components/chat-pane";
@@ -30,10 +32,17 @@ function SessionTeardownWatcher() {
 export default function Dashboard() {
   const [mounted, setMounted] = useState(false);
   const { isLoaded, isSignedIn } = useAuth();
+  const router = useRouter();
 
   useEffect(() => {
     setMounted(true);
   }, []);
+
+  useEffect(() => {
+    if (mounted && isLoaded && !isSignedIn) {
+      router.push("/sign-in");
+    }
+  }, [mounted, isLoaded, isSignedIn, router]);
 
   if (!mounted || !isLoaded) {
     return (
@@ -47,7 +56,7 @@ export default function Dashboard() {
   }
 
   if (!isSignedIn) {
-    return <RedirectToSignIn signInForceRedirectUrl="/dashboard" />;
+    return null;
   }
 
   return (
@@ -335,7 +344,12 @@ Provide clear, structured, and direct analysis using the statistics and sample p
               <span className="hidden sm:inline">Purge Session</span>
               <span className="sm:hidden">Purge</span>
             </button>
-            <UserButton />
+            <button
+              onClick={() => auth?.signOut()}
+              className="inline-flex h-8 items-center justify-center rounded border border-[color:hsl(var(--border))] bg-[color:hsl(var(--background))] px-3 font-mono text-[10px] font-semibold text-[color:hsl(var(--text-muted))] hover:text-[color:hsl(var(--text-primary))] hover:border-[color:hsl(var(--text-muted))] active:scale-[0.98] transition-colors"
+            >
+              Sign Out
+            </button>
           </div>
         </div>
       </header>
